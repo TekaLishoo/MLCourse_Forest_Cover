@@ -1,8 +1,11 @@
 [tool.poetry]
-name = "mlcourse_forest_cover"
+name = "forest_cover_type"
 version = "0.1.0"
 description = "Homework for ML Course"
 authors = ["Teka Lishoo <teka.lishoo@gmail.com>"]
+
+[tool.poetry.scripts]
+train = "forest_cover_type.train:train"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -20,3 +23,4 @@ mlflow = "^1.25.1"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+

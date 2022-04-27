@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5cac1375-3d61-4007-bf5e-d26131045b82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forest_cover_type/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/forest_cover_type/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,11 +48,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/forest_cover_type" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kate\Desktop\Lesson 2\MLCourse_Forest_Cover\src" />
       <recent name="C:\Users\Kate\Desktop\Lesson 2\MLCourse_Forest_Cover\src\forest_cover_type" />
     </key>
   </component>
@@ -142,7 +144,7 @@
       <updated>1651062187660</updated>
       <workItem from="1651062190111" duration="1618000" />
       <workItem from="1651064206680" duration="4249000" />
-      <workItem from="1651074594764" duration="1884000" />
+      <workItem from="1651074594764" duration="4467000" />
     </task>
     <servers />
   </component>
@@ -162,26 +164,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="300" key="GridCell.Tab.0.bottom" timestamp="1651085165606">
+    <state width="1877" height="300" key="GridCell.Tab.0.bottom" timestamp="1651087786335">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="300" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1651085165606" />
-    <state width="1877" height="300" key="GridCell.Tab.0.center" timestamp="1651085165606">
+    <state width="1877" height="300" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1651087786335" />
+    <state width="1877" height="300" key="GridCell.Tab.0.center" timestamp="1651087786335">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="300" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1651085165606" />
-    <state width="1877" height="300" key="GridCell.Tab.0.left" timestamp="1651085165606">
+    <state width="1877" height="300" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1651087786335" />
+    <state width="1877" height="300" key="GridCell.Tab.0.left" timestamp="1651087786335">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="300" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1651085165606" />
-    <state width="1877" height="300" key="GridCell.Tab.0.right" timestamp="1651085165606">
+    <state width="1877" height="300" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1651087786335" />
+    <state width="1877" height="300" key="GridCell.Tab.0.right" timestamp="1651087786335">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="300" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1651085165606" />
+    <state width="1877" height="300" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1651087786335" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MLCourse_Forest_Cover$EDA_pandas_profiling.coverage" NAME="EDA_pandas_profiling Coverage Results" MODIFIED="1651068792766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/forest_cover_type" />
-    <SUITE FILE_PATH="coverage/MLCourse_Forest_Cover$train.coverage" NAME="train Coverage Results" MODIFIED="1651085165589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/forest_cover_type" />
+    <SUITE FILE_PATH="coverage/MLCourse_Forest_Cover$train.coverage" NAME="train Coverage Results" MODIFIED="1651087514608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/forest_cover_type" />
     <SUITE FILE_PATH="coverage/MLCourse_Forest_Cover$utils_pandas.coverage" NAME="utils_pandas Coverage Results" MODIFIED="1651067070779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/venv/Lib/site-packages/pandas_profiling/model/pandas" />
   </component>
 </project>
