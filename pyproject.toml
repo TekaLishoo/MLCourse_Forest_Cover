@@ -7,6 +7,10 @@ authors = ["Teka Lishoo <teka.lishoo@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 pandas = "^1.4.2"
+sklearn = "^0.0"
+click = "^8.1.2"
+pandas-profiling = "^3.1.0"
+seaborn = "^0.11.2"
 
 [tool.poetry.dev-dependencies]
 
