@@ -65,7 +65,7 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 )
 @click.option(
     "--cv_k_split",
-    default=10,
+    default=5,
     type=int,
     show_default=True,
 )
