@@ -19,7 +19,7 @@ from sklearn.model_selection import train_test_split
 def train(dataset_path: Path):
     df = pd.read_csv(dataset_path)
     X_train, X_val, y_train, y_val = train_test_split(df.drop(columns='Cover_Type'), df['Cover_Type'], test_size=0.2,
-                                                      stratify=df['Cover_Type'])
+                                                      stratify=df['Cover_Type'], random_state=1)
     rf = RandomForestClassifier()
     rf.fit(X_train, y_train)
     y_pred = rf.predict(X_val)
@@ -27,5 +27,3 @@ def train(dataset_path: Path):
     acc_val = accuracy_score(y_val, y_pred)
     print(f'Train accuracy: {acc_train}')
     print(f'Val accuracy: {acc_val}')
-
-train()
