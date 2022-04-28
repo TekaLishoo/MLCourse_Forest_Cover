@@ -5,7 +5,7 @@ import pandas as pd
 import mlflow
 import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 from .pipeline import create_pipeline
 
@@ -69,9 +69,17 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
     model = create_pipeline(scaling, select_feature, n_estimators, criterion, max_depth, random_state)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_val)
+
     acc_train = accuracy_score(y_train, model.predict(X_train))
     acc_val = accuracy_score(y_val, y_pred)
     print(f'Train accuracy: {acc_train}')
     print(f'Val accuracy: {acc_val}')
+
+    f1_val = f1_score(y_val, y_pred, average='weighted')
+    print(f'F1 score: {f1_val}')
+
+    roc_auc_val = roc_auc_score(y_val, model.predict_proba(X_val), multi_class='ovr')
+    print(f'ROC AUC: {roc_auc_val}')
+
     dump(model, save_model_path)
     click.echo(f"Model is saved to {save_model_path}.")
