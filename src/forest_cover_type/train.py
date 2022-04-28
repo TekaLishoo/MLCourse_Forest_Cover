@@ -75,20 +75,34 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
     X = df.drop(columns='Cover_Type')
     y = df['Cover_Type']
 
-    model = create_pipeline(scaling, select_feature, n_estimators, criterion, max_depth, random_state)
+    with mlflow.start_run():
+        model = create_pipeline(scaling, select_feature, n_estimators, criterion, max_depth, random_state)
 
-    cv = KFold(n_splits=cv_k_split, random_state=1, shuffle=True)
+        cv = KFold(n_splits=cv_k_split, random_state=1, shuffle=True)
 
-    scores = cross_validate(model, X, y,
-                            scoring=['accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'], cv=cv,
-                            n_jobs=-1)
-    print('Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))
-    print('F1 mean: %.3f, with std: %.3f' % (np.mean(scores["test_f1_weighted"]), np.std(scores["test_f1_weighted"])))
-    print('ROC AUC mean: %.3f, with std: %.3f' % (
-        np.mean(scores["test_roc_auc_ovr_weighted"]), np.std(scores["test_roc_auc_ovr_weighted"])))
+        scores = cross_validate(model, X, y,
+                                scoring=['accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'], cv=cv,
+                                n_jobs=-1)
 
-    model.fit(X, y)
-    y_pred = model.predict(X)
+        mlflow.log_param("use_scaler", scaling)
+        mlflow.log_param("use_feature_selector", select_feature)
+        mlflow.log_param("n_estimators", n_estimators)
+        mlflow.log_param("criterion", criterion)
+        mlflow.log_param("max_depth", max_depth)
+        mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
+        mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
+        mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
+        mlflow.sklearn.log_model(model)
 
-    dump(model, save_model_path)
-    click.echo(f"Model is saved to {save_model_path}.")
+        click.echo(
+            'Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))
+        click.echo(
+            'F1 mean: %.3f, with std: %.3f' % (np.mean(scores["test_f1_weighted"]), np.std(scores["test_f1_weighted"])))
+        click.echo('ROC AUC mean: %.3f, with std: %.3f' % (
+            np.mean(scores["test_roc_auc_ovr_weighted"]), np.std(scores["test_roc_auc_ovr_weighted"])))
+
+        model.fit(X, y)
+        y_pred = model.predict(X)
+
+        dump(model, save_model_path)
+        click.echo(f"Model is saved to {save_model_path}.")
