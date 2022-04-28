@@ -5,7 +5,8 @@ from sklearn.pipeline import Pipeline, make_pipeline
 
 
 def create_pipeline(scaling: bool, select_feature: bool, n_estimators: int, criterion, max_depth, random_state: int):
-    model = RandomForestClassifier(n_estimators, criterion, max_depth, random_state, n_jobs=-1)
+    model = RandomForestClassifier(n_estimators=n_estimators, criterion=criterion, max_depth=max_depth,
+                                   random_state=random_state, n_jobs=-1)
     scaler = None
     select = None
     if scaling:
