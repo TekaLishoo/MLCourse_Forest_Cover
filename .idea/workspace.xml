@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5cac1375-3d61-4007-bf5e-d26131045b82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forest_cover_type/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/forest_cover_type/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forest_cover_type/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/forest_cover_type/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +148,7 @@
       <workItem from="1651062190111" duration="1618000" />
       <workItem from="1651064206680" duration="4249000" />
       <workItem from="1651074594764" duration="4467000" />
-      <workItem from="1651123693451" duration="5192000" />
+      <workItem from="1651123693451" duration="5496000" />
     </task>
     <servers />
   </component>
@@ -169,6 +168,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="711" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1651130211829">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="711" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1651130211829" />
     <state width="1877" height="300" key="GridCell.Tab.0.bottom" timestamp="1651087786335">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

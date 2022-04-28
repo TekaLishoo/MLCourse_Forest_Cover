@@ -1,5 +1,6 @@
 import click
 from pathlib import Path
+from joblib import dump
 import pandas as pd
 import mlflow
 import mlflow.sklearn
@@ -15,6 +16,13 @@ from .pipeline import create_pipeline
     "--dataset-path",
     default="data/train.csv",
     type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    show_default=True,
+)
+@click.option(
+    "-s",
+    "--save-model-path",
+    default="data/model.joblib",
+    type=click.Path(dir_okay=False, writable=True, path_type=Path),
     show_default=True,
 )
 @click.option(
@@ -53,9 +61,8 @@ from .pipeline import create_pipeline
     type=int,
     show_default=True,
 )
-
-
-def train(dataset_path: Path, scaling: bool, select_feature: bool, n_estimators, criterion, max_depth, random_state):
+def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature: bool, n_estimators, criterion,
+          max_depth, random_state):
     df = pd.read_csv(dataset_path)
     X_train, X_val, y_train, y_val = train_test_split(df.drop(columns='Cover_Type'), df['Cover_Type'], test_size=0.2,
                                                       stratify=df['Cover_Type'], random_state=1)
@@ -66,3 +73,5 @@ def train(dataset_path: Path, scaling: bool, select_feature: bool, n_estimators,
     acc_val = accuracy_score(y_val, y_pred)
     print(f'Train accuracy: {acc_train}')
     print(f'Val accuracy: {acc_val}')
+    dump(model, save_model_path)
+    click.echo(f"Model is saved to {save_model_path}.")
