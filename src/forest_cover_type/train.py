@@ -35,8 +35,8 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 )
 @click.option(
     "--select_feature",
-    default=False,
-    type=bool,
+    default=None,
+    type=click.Choice([None, "select_from_model", "pca"], case_sensitive=False),
     show_default=True,
 )
 @click.option(
@@ -105,7 +105,7 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
     type=int,
     show_default=True,
 )
-def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature: bool, wich_model,
+def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature, wich_model,
           n_estimators, criterion, max_depth,
           penalty, solver, c, fit_intercept, max_iter,
           random_state, cv_k_split):
@@ -126,7 +126,7 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
                                 n_jobs=-1)
 
         mlflow.log_param("model", wich_model)
-        mlflow.log_param("use_feature_selector", select_feature)
+        mlflow.log_param("feature_selector", select_feature)
         if wich_model == "random_forest":
             mlflow.log_param("use_scaler", scaling)
             mlflow.log_param("n_estimators", n_estimators)
@@ -142,6 +142,7 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
         mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
         mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
         mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
+        mlflow.sklearn.log_model(model, wich_model)
 
         click.echo(
             'Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))

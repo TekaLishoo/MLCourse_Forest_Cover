@@ -17,6 +17,7 @@ seaborn = "^0.11.2"
 matplotlib = "^3.5.1"
 PyQt5 = "^5.15.6"
 mlflow = "^1.25.1"
+Boruta = "^0.3"
 
 [tool.poetry.dev-dependencies]
 sklearn = "^0.0"

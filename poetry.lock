@@ -28,6 +28,19 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
 
 [[package]]
+name = "boruta"
+version = "0.3"
+description = "Python Implementation of Boruta Feature Selection"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+numpy = ">=1.10.4"
+scikit-learn = ">=0.17.1"
+scipy = ">=0.17.0"
+
+[[package]]
 name = "certifi"
 version = "2021.10.8"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -982,7 +995,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "a4a5cd4a312d53760a662a93bbe3b3fc74c6f1412e9ccbf751db667e32d7c97b"
+content-hash = "d59895ff67cb2f466e93ff488801fa8172291bcd4bdf67fde82f0474e326a9e0"
 
 [metadata.files]
 alembic = [
@@ -992,6 +1005,10 @@ alembic = [
 attrs = [
     {file = "attrs-21.4.0-py2.py3-none-any.whl", hash = "sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4"},
     {file = "attrs-21.4.0.tar.gz", hash = "sha256:626ba8234211db98e869df76230a137c4c40a12d72445c45d5f5b716f076e2fd"},
+]
+boruta = [
+    {file = "Boruta-0.3-py3-none-any.whl", hash = "sha256:8269e9c152ae73ed05cd2b347b6b53edc437e1f7b6e1f3d6b8bee1e99d27e963"},
+    {file = "Boruta-0.3.tar.gz", hash = "sha256:06d42882a57a4db912e5b7b0b887427fbb6ee7e331d0c7c1f7c06a6658c99831"},
 ]
 certifi = [
     {file = "certifi-2021.10.8-py2.py3-none-any.whl", hash = "sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569"},
