@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import mlflow
 import mlflow.sklearn
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 from .pipeline import create_pipeline
@@ -119,11 +119,23 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
                                 n_estimators, criterion, max_depth,
                                 penalty, solver, c, fit_intercept, max_iter, random_state)
 
-        cv = KFold(n_splits=cv_k_split, random_state=1, shuffle=True)
+        cv_inner = KFold(n_splits=cv_k_split, random_state=1, shuffle=True)
+        space = dict()
+        if which_model == 'random_forest':
+            space['mod__n_estimators'] = [50, 100, 200, 300]
+            space['mod__criterion'] = ['gini', 'entropy']
+            space['mod__max_depth'] = [100, 200, 500, 1000]
+        elif which_model == 'log_regr':
+            space['mod__C'] = [0.1, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0]
+            space['mod__fit_intercept'] = [False, True]
 
-        scores = cross_validate(model, X, y,
-                                scoring=['accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'], cv=cv,
+        search = GridSearchCV(model, space, scoring='accuracy', n_jobs=1, cv=cv_inner, refit=True)
+
+        cv_outer = KFold(n_splits=10, shuffle=True, random_state=1)
+        scores = cross_validate(search, X, y,
+                                scoring=['accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'], cv=cv_outer,
                                 n_jobs=-1)
+        
 
         mlflow.log_param("model", which_model)
         mlflow.log_param("feature_selector", select_feature)
@@ -151,8 +163,11 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
         click.echo('ROC AUC mean: %.3f, with std: %.3f' % (
             np.mean(scores["test_roc_auc_ovr_weighted"]), np.std(scores["test_roc_auc_ovr_weighted"])))
 
-        model.fit(X, y)
-        y_pred = model.predict(X)
+        result = search.fit(X, y)
+        best_model = result.best_estimator_
+        click.echo('Best parameters')
+        click.echo(search.best_params_)
+        y_pred = best_model.predict(X)
 
-        dump(model, save_model_path)
+        dump(best_model, save_model_path)
         click.echo(f"Model is saved to {save_model_path}.")
