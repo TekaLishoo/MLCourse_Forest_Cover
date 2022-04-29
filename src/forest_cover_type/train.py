@@ -36,11 +36,11 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 @click.option(
     "--select_feature",
     default=None,
-    type=click.Choice([None, "select_from_model", "pca"], case_sensitive=False),
+    type=click.Choice([None, "select_from_model", "pca"]),
     show_default=True,
 )
 @click.option(
-    "--wich_model",
+    "--which_model",
     default="random_forest",
     type=click.Choice(["random_forest", "log_regr"], case_sensitive=False),
     show_default=True,
@@ -66,7 +66,7 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 @click.option(
     "--penalty",
     default="l2",
-    type=click.Choice(["l1", "l2", "elasticnet", "none"], case_sensitive=False),
+    type=click.Choice(["l1", "l2", "none"], case_sensitive=False),
     show_default=True,
 )
 @click.option(
@@ -105,7 +105,7 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
     type=int,
     show_default=True,
 )
-def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature, wich_model,
+def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature, which_model,
           n_estimators, criterion, max_depth,
           penalty, solver, c, fit_intercept, max_iter,
           random_state, cv_k_split):
@@ -115,7 +115,7 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
     y = df['Cover_Type']
 
     with mlflow.start_run():
-        model = create_pipeline(scaling, select_feature, wich_model,
+        model = create_pipeline(scaling, select_feature, which_model,
                                 n_estimators, criterion, max_depth,
                                 penalty, solver, c, fit_intercept, max_iter, random_state)
 
@@ -125,14 +125,14 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
                                 scoring=['accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'], cv=cv,
                                 n_jobs=-1)
 
-        mlflow.log_param("model", wich_model)
+        mlflow.log_param("model", which_model)
         mlflow.log_param("feature_selector", select_feature)
-        if wich_model == "random_forest":
+        if which_model == "random_forest":
             mlflow.log_param("use_scaler", scaling)
             mlflow.log_param("n_estimators", n_estimators)
             mlflow.log_param("criterion", criterion)
             mlflow.log_param("max_depth", max_depth)
-        elif wich_model == "log_regr":
+        elif which_model == "log_regr":
             mlflow.log_param("use_scaler", True)
             mlflow.log_param("penalty", penalty)
             mlflow.log_param("c", c)
@@ -142,7 +142,7 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
         mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
         mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
         mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
-        mlflow.sklearn.log_model(model, wich_model)
+        mlflow.sklearn.log_model(model, which_model)
 
         click.echo(
             'Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))
