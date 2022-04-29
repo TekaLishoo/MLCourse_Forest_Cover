@@ -40,6 +40,12 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
     show_default=True,
 )
 @click.option(
+    "--wich_model",
+    default="random_forest",
+    type=click.Choice(["random_forest", "log_regr"], case_sensitive=False),
+    show_default=True,
+)
+@click.option(
     "--n_estimators",
     default=100,
     type=int,
@@ -58,6 +64,30 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
     show_default=True,
 )
 @click.option(
+    "--penalty",
+    default="l2",
+    type=click.Choice(["l1", "l2", "elasticnet", "none"], case_sensitive=False),
+    show_default=True,
+)
+@click.option(
+    "--c",
+    default=1.0,
+    type=float,
+    show_default=True,
+)
+@click.option(
+    "--fit_intercept",
+    default=True,
+    type=bool,
+    show_default=True,
+)
+@click.option(
+    "--max_iter",
+    default=100,
+    type=int,
+    show_default=True,
+)
+@click.option(
     "--random_state",
     default=42,
     type=int,
@@ -69,14 +99,20 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
     type=int,
     show_default=True,
 )
-def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature: bool, n_estimators, criterion,
-          max_depth, random_state, cv_k_split):
+def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature: bool, wich_model,
+          n_estimators, criterion, max_depth,
+          penalty, c, fit_intercept, max_iter,
+          random_state, cv_k_split):
+
     df = pd.read_csv(dataset_path)
     X = df.drop(columns='Cover_Type')
     y = df['Cover_Type']
 
+    #mlflow.create_experiment(name=wich_model)
     with mlflow.start_run():
-        model = create_pipeline(scaling, select_feature, n_estimators, criterion, max_depth, random_state)
+        model = create_pipeline(scaling, select_feature, wich_model,
+                                n_estimators, criterion, max_depth,
+                                penalty, c, fit_intercept, max_iter, random_state)
 
         cv = KFold(n_splits=cv_k_split, random_state=1, shuffle=True)
 
@@ -84,15 +120,24 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
                                 scoring=['accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'], cv=cv,
                                 n_jobs=-1)
 
-        mlflow.log_param("use_scaler", scaling)
+        mlflow.log_param("model", wich_model)
         mlflow.log_param("use_feature_selector", select_feature)
-        mlflow.log_param("n_estimators", n_estimators)
-        mlflow.log_param("criterion", criterion)
-        mlflow.log_param("max_depth", max_depth)
+        if wich_model == "random_forest":
+            mlflow.log_param("use_scaler", scaling)
+            mlflow.log_param("n_estimators", n_estimators)
+            mlflow.log_param("criterion", criterion)
+            mlflow.log_param("max_depth", max_depth)
+        elif wich_model == "log_regr":
+            mlflow.log_param("use_scaler", True)
+            mlflow.log_param("penalty", penalty)
+            mlflow.log_param("c", c)
+            mlflow.log_param("fit_intercept", fit_intercept)
+            mlflow.log_param("max_iter", max_iter)
+
         mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
         mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
         mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
-        mlflow.sklearn.log_model(model, f"model {criterion}")
+        #mlflow.sklearn.log_model(wich_model, f"model {wich_model}")
 
         click.echo(
             'Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))
