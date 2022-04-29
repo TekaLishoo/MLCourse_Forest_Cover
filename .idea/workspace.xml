@@ -21,6 +21,53 @@
   <component name="ChangeListManager">
     <list default="true" id="5cac1375-3d61-4007-bf5e-d26131045b82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/artifacts/model gini/MLmodel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/artifacts/model gini/conda.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/artifacts/model gini/model.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/artifacts/model gini/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/meta.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/metrics/F1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/metrics/ROC AUC" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/metrics/accuracy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/params/criterion" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/params/max_depth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/params/n_estimators" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/params/use_feature_selector" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/params/use_scaler" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/tags/mlflow.log-model.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/tags/mlflow.source.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/tags/mlflow.source.type" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/tags/mlflow.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/artifacts/model/MLmodel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/artifacts/model/conda.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/artifacts/model/model.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/artifacts/model/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/meta.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/metrics/F1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/metrics/ROC AUC" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/metrics/accuracy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/params/criterion" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/params/max_depth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/params/n_estimators" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/params/use_feature_selector" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/params/use_scaler" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/tags/mlflow.log-model.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/tags/mlflow.source.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/tags/mlflow.source.type" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/32aa1736fcc24d809ea6119f83e92ee6/tags/mlflow.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/meta.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/metrics/F1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/metrics/ROC AUC" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/metrics/accuracy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/params/criterion" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/params/max_depth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/params/n_estimators" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/params/use_feature_selector" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/params/use_scaler" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/tags/mlflow.source.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/tags/mlflow.source.type" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/3347d3e49d104674b8a8a9fdb68a6863/tags/mlflow.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlruns/0/meta.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +196,7 @@
       <workItem from="1651074594764" duration="4467000" />
       <workItem from="1651123693451" duration="17571000" />
       <workItem from="1651169934880" duration="41000" />
-      <workItem from="1651208520033" duration="2430000" />
+      <workItem from="1651208520033" duration="2626000" />
     </task>
     <servers />
   </component>
