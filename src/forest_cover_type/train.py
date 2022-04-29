@@ -70,6 +70,12 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
     show_default=True,
 )
 @click.option(
+    "--solver",
+    default="lbfgs",
+    type=click.Choice(["lbfgs", "newton-cg", "sag", "saga"], case_sensitive=False),
+    show_default=True,
+)
+@click.option(
     "--c",
     default=1.0,
     type=float,
@@ -83,7 +89,7 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 )
 @click.option(
     "--max_iter",
-    default=100,
+    default=10000,
     type=int,
     show_default=True,
 )
@@ -101,18 +107,17 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 )
 def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_feature: bool, wich_model,
           n_estimators, criterion, max_depth,
-          penalty, c, fit_intercept, max_iter,
+          penalty, solver, c, fit_intercept, max_iter,
           random_state, cv_k_split):
 
     df = pd.read_csv(dataset_path)
     X = df.drop(columns='Cover_Type')
     y = df['Cover_Type']
 
-    #mlflow.create_experiment(name=wich_model)
     with mlflow.start_run():
         model = create_pipeline(scaling, select_feature, wich_model,
                                 n_estimators, criterion, max_depth,
-                                penalty, c, fit_intercept, max_iter, random_state)
+                                penalty, solver, c, fit_intercept, max_iter, random_state)
 
         cv = KFold(n_splits=cv_k_split, random_state=1, shuffle=True)
 
@@ -137,7 +142,6 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
         mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
         mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
         mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
-        #mlflow.sklearn.log_model(wich_model, f"model {wich_model}")
 
         click.echo(
             'Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))

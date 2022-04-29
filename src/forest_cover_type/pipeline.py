@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 
 
 def create_pipeline(scaling: bool, select_feature: bool, model, n_estimators: int, criterion, max_depth,
-                    penalty, c: float, fit_intercept: bool, max_iter,
+                    penalty, solver, c: float, fit_intercept: bool, max_iter,
                     random_state: int, ):
     if model == 'random_forest':
         model_cl = RandomForestClassifier(n_estimators=n_estimators, criterion=criterion, max_depth=max_depth,
@@ -14,8 +14,8 @@ def create_pipeline(scaling: bool, select_feature: bool, model, n_estimators: in
         scaler = None
 
     elif model == 'log_regr':
-        model_cl = LogisticRegression(penalty=penalty, C=c, fit_intercept=fit_intercept, class_weight="balanced",
-                                      max_iter=max_iter, n_jobs=-1, random_state=random_state)
+        model_cl = LogisticRegression(penalty=penalty, solver=solver, C=c, fit_intercept=fit_intercept,
+                                      class_weight="balanced", max_iter=max_iter, n_jobs=-1, random_state=random_state)
         scaler = StandardScaler()
 
     select = None
@@ -23,7 +23,7 @@ def create_pipeline(scaling: bool, select_feature: bool, model, n_estimators: in
         scaler = StandardScaler()
 
     if select_feature:
-        select = SelectFromModel(model)
+        select = SelectFromModel(model_cl)
 
     return Pipeline([
         ('sca', scaler),
