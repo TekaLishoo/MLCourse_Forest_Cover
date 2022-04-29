@@ -92,7 +92,7 @@ def train(dataset_path: Path, save_model_path: Path, scaling: bool, select_featu
         mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
         mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
         mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
-        mlflow.sklearn.log_model(model)
+        mlflow.sklearn.log_model(model, f"model {criterion}")
 
         click.echo(
             'Accuracy mean: %.3f, with std: %.3f' % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"])))

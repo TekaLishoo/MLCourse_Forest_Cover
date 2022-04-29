@@ -19,6 +19,7 @@ PyQt5 = "^5.15.6"
 mlflow = "^1.25.1"
 
 [tool.poetry.dev-dependencies]
+sklearn = "^0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

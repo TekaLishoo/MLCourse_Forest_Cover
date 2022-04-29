@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Kate/Desktop/Lesson%202/MLCourse_Forest_Cover/mlruns/0/06f0f52a41b94a1a98d19e8ce3bca46b/artifacts
+end_time: 1651157349390
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 06f0f52a41b94a1a98d19e8ce3bca46b
+run_uuid: 06f0f52a41b94a1a98d19e8ce3bca46b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1651157342262
+status: 3
+tags: []
+user_id: Kate
