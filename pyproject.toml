@@ -6,6 +6,7 @@ authors = ["Teka Lishoo <teka.lishoo@gmail.com>"]
 
 [tool.poetry.scripts]
 train = "forest_cover_type.train:train"
+EDA = "forest_cover_type.EDA_pandas_profiling:eda"
 
 [tool.poetry.dependencies]
 python = "^3.9"
