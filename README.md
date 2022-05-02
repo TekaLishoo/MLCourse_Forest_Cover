@@ -27,6 +27,11 @@ poetry run train --help
 ```sh
 poetry run mlflow ui
 ```
+7. To see the pandas profiling information, please run eda code:
+```sh
+poetry run eda
+```
+You will find the report on this path src/forest_cover_type/EDA.
 
 ## Development
 
