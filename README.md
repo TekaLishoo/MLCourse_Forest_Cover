@@ -45,14 +45,13 @@ Now you can use developer instruments, e.g. pytest:
 ```
 poetry run pytest
 ```
-More conveniently, to run all sessions of testing and formatting in a single command, install and use [nox](https://nox.thea.codes/en/stable/): 
+More conveniently, to run all sessions of testing and formatting in a single command, install and use [tox](https://tox.wiki/en/latest/): 
 ```
-nox [-r]
+tox
 ```
-Format your code with [black](https://github.com/psf/black) by using either nox or poetry:
+Format your code with [black](https://github.com/psf/black):
 ```
-nox -[r]s black
-poetry run black src tests noxfile.py
+poetry run black src
 ```
 
 ## Results in the MLFlow UI:
@@ -70,3 +69,11 @@ poetry run black src tests noxfile.py
 ## Flake8 passed:
 
 ![Screenshot](src/forest_cover_type/Screenshots/Formatted_flake8.JPG?raw=true "Title")
+
+## Mypy report:
+
+![Screenshot](src/forest_cover_type/Screenshots/mypy.JPG?raw=true "Title")
+
+## Tox report:
+
+![Screenshot](src/forest_cover_type/Screenshots/tox_report.JPG?raw=true "Title")

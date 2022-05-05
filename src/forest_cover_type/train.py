@@ -76,8 +76,7 @@ from sklearn.model_selection import KFold, cross_validate
 @click.option(
     "--solver",
     default="lbfgs",
-    type=click.Choice(["lbfgs", "newton-cg", "sag", "saga"],
-                      case_sensitive=False),
+    type=click.Choice(["lbfgs", "newton-cg", "sag", "saga"], case_sensitive=False),
     show_default=True,
 )
 @click.option(
@@ -157,12 +156,11 @@ def train(
                 space["mod__criterion"] = ["gini", "entropy"]
                 space["mod__max_depth"] = [100, 200, 500, 1000]
             elif which_model == "log_regr":
-                space["mod__C"] = [0.1, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0]
+                space["mod__C"] = [1, 2, 5, 10, 20, 50]
                 space["mod__fit_intercept"] = [False, True]
 
             search = GridSearchCV(
-                model, space, scoring="accuracy", n_jobs=1,
-                cv=cv_inner, refit=True
+                model, space, scoring="accuracy", n_jobs=1, cv=cv_inner, refit=True
             )
 
             cv_outer = KFold(n_splits=10, shuffle=True, random_state=1)
@@ -204,8 +202,7 @@ def train(
 
             mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
             mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
-            mlflow.log_metric("ROC AUC",
-                              np.mean(scores["test_roc_auc_ovr_weighted"]))
+            mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
             mlflow.sklearn.log_model(model, which_model)
 
             best_model = model
@@ -213,13 +210,11 @@ def train(
 
         click.echo(
             "Accuracy mean: %.3f, with std: %.3f"
-            % (np.mean(scores["test_accuracy"]),
-               np.std(scores["test_accuracy"]))
+            % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"]))
         )
         click.echo(
             "F1 mean: %.3f, with std: %.3f"
-            % (np.mean(scores["test_f1_weighted"]),
-               np.std(scores["test_f1_weighted"]))
+            % (np.mean(scores["test_f1_weighted"]), np.std(scores["test_f1_weighted"]))
         )
         click.echo(
             "ROC AUC mean: %.3f, with std: %.3f"

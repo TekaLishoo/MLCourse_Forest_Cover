@@ -19,7 +19,7 @@ def create_pipeline(
     fit_intercept: bool,
     max_iter,
     random_state: int,
-):
+) -> Pipeline:
     if model == "random_forest":
         model_cl = RandomForestClassifier(
             n_estimators=n_estimators,
