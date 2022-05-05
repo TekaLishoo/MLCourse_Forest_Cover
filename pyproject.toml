@@ -24,6 +24,7 @@ Boruta = "^0.3"
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
 Faker = "^13.7.0"
+black = "^22.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
