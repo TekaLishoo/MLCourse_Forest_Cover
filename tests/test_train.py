@@ -1,11 +1,14 @@
 from click.testing import CliRunner
 import pytest
+
 import os
 from random import randint
 import numpy as np
 import pandas as pd
+import warnings
 
 from faker import Faker
+import joblib
 from pathlib import Path
 
 from forest_cover_type.train import train
@@ -26,6 +29,15 @@ def generate_random_dataset(path):
     df.to_csv(path)
 
 
+# test for error cases without using fake/sample data and filesystem isolation, as in the demo
+@pytest.mark.filterwarnings('ignore::UserWarning')
+def test_correctness_with_default_values(runner: CliRunner):
+    result = runner.invoke(train, ["--auto_grid_search", 5])
+    assert result.exit_code == 1
+
+
+# Tests for a random test data, filesystem isolation, and checking saved model for correctness
+@pytest.mark.filterwarnings('ignore::UserWarning')
 def test_correctness_without_auto_grid_search(runner: CliRunner):
     """It checks the correctness of train function with auto_grid_search = False"""
     with runner.isolated_filesystem():
@@ -34,9 +46,15 @@ def test_correctness_without_auto_grid_search(runner: CliRunner):
             train,
             ["-d", 'random_data.csv', "-s", 'model.joblib', "--auto_grid_search", False, "--select_feature", 'pca'],
         )
+        df = pd.read_csv('random_data.csv')
+        model = joblib.load('model.joblib')
+        y_pred = model.predict(df.drop(columns='Cover_Type'))
+
+        assert y_pred.shape[0] == df['Cover_Type'].size
         assert result.exit_code == 0
 
 
+@pytest.mark.filterwarnings('ignore::DeprecationWarning')
 def test_correctness_for_log_regr(runner: CliRunner):
     """It checks the correctness of train function with scaling = False"""
     with runner.isolated_filesystem():
@@ -44,6 +62,11 @@ def test_correctness_for_log_regr(runner: CliRunner):
         result = runner.invoke(
             train, ["-d", 'random_data.csv', "-s", 'model.joblib', "--which_model", 'log_regr'],
         )
+        df = pd.read_csv('random_data.csv')
+        model = joblib.load('model.joblib')
+        y_pred = model.predict(df.drop(columns='Cover_Type'))
+
+        assert y_pred.shape[0] == df['Cover_Type'].size
         assert result.exit_code == 0
 
 
@@ -55,7 +78,6 @@ def test_error_for_invalid_select_feature(runner: CliRunner):
             train, ["-d", 'random_data.csv', "-s", 'model.joblib', "--select_feature", 2],
         )
         assert result.exit_code == 2
-        assert "Invalid value for '--select_feature'" in result.output
 
 
 def test_error_for_invalid_which_model(runner: CliRunner):
@@ -67,4 +89,3 @@ def test_error_for_invalid_which_model(runner: CliRunner):
             train, ["-d", 'random_data.csv', "-s", 'model.joblib', "--which_model", fake.word()],
         )
         assert result.exit_code == 2
-        assert "Invalid value for '--which_model'" in result.output
