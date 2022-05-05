@@ -27,7 +27,7 @@ def create_pipeline(scaling: bool, select_feature, model, n_estimators: int, cri
         select = SelectFromModel(model_cl)
 
     if select_feature == 'pca':
-        select = PCA(n_components=6)
+        select = PCA(n_components=3)
 
     return Pipeline([
         ('sca', scaler),
