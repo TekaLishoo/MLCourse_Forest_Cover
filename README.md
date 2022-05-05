@@ -59,6 +59,10 @@ poetry run black src tests noxfile.py
 
 ![Screenshot](src/forest_cover_type/Screenshots/MLFlow_screenshot.JPG?raw=true "Title")
 
-## All tests passed:
+## All tests with PyTest passed:
 
 ![Screenshot](src/forest_cover_type/Screenshots/Passed_tests.JPG?raw=true "Title")
+
+## Formatted with black:
+
+![Screenshot](src/forest_cover_type/Screenshots/black.JPG?raw=true "Title")
