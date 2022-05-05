@@ -55,10 +55,10 @@ nox -[r]s black
 poetry run black src tests noxfile.py
 ```
 
-#Results in the MLFlow UI:
+##Results in the MLFlow UI:
 
-![Alt text](data/MLFlow_screenshot.JPG?raw=true "Title")
+![Screenshot](data/MLFlow_screenshot.JPG?raw=true "Title")
 
-#All tests passed:
+##All tests passed:
 
-![Alt text](data/Passed_tests.JPG?raw=true "Title")
+![Screenshot](data/Passed_tests.JPG?raw=true "Title")
