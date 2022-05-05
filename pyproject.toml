@@ -25,6 +25,7 @@ Boruta = "^0.3"
 pytest = "^7.1.2"
 Faker = "^13.7.0"
 black = "^22.3.0"
+flake8 = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

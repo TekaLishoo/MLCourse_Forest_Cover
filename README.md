@@ -66,3 +66,7 @@ poetry run black src tests noxfile.py
 ## Formatted with black:
 
 ![Screenshot](src/forest_cover_type/Screenshots/black.JPG?raw=true "Title")
+
+## Flake8 passed:
+
+![Screenshot](src/forest_cover_type/Screenshots/Formatted_flake8.JPG?raw=true "Title")

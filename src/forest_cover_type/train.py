@@ -6,10 +6,8 @@ import numpy as np
 import mlflow
 import mlflow.sklearn
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
-from sklearn.model_selection import train_test_split
 from .pipeline import create_pipeline
-from sklearn.model_selection import KFold, cross_val_score, cross_validate
+from sklearn.model_selection import KFold, cross_validate
 
 
 @click.command()
@@ -78,7 +76,8 @@ from sklearn.model_selection import KFold, cross_val_score, cross_validate
 @click.option(
     "--solver",
     default="lbfgs",
-    type=click.Choice(["lbfgs", "newton-cg", "sag", "saga"], case_sensitive=False),
+    type=click.Choice(["lbfgs", "newton-cg", "sag", "saga"],
+                      case_sensitive=False),
     show_default=True,
 )
 @click.option(
@@ -162,7 +161,8 @@ def train(
                 space["mod__fit_intercept"] = [False, True]
 
             search = GridSearchCV(
-                model, space, scoring="accuracy", n_jobs=1, cv=cv_inner, refit=True
+                model, space, scoring="accuracy", n_jobs=1,
+                cv=cv_inner, refit=True
             )
 
             cv_outer = KFold(n_splits=10, shuffle=True, random_state=1)
@@ -204,7 +204,8 @@ def train(
 
             mlflow.log_metric("accuracy", np.mean(scores["test_accuracy"]))
             mlflow.log_metric("F1", np.mean(scores["test_f1_weighted"]))
-            mlflow.log_metric("ROC AUC", np.mean(scores["test_roc_auc_ovr_weighted"]))
+            mlflow.log_metric("ROC AUC",
+                              np.mean(scores["test_roc_auc_ovr_weighted"]))
             mlflow.sklearn.log_model(model, which_model)
 
             best_model = model
@@ -212,11 +213,13 @@ def train(
 
         click.echo(
             "Accuracy mean: %.3f, with std: %.3f"
-            % (np.mean(scores["test_accuracy"]), np.std(scores["test_accuracy"]))
+            % (np.mean(scores["test_accuracy"]),
+               np.std(scores["test_accuracy"]))
         )
         click.echo(
             "F1 mean: %.3f, with std: %.3f"
-            % (np.mean(scores["test_f1_weighted"]), np.std(scores["test_f1_weighted"]))
+            % (np.mean(scores["test_f1_weighted"]),
+               np.std(scores["test_f1_weighted"]))
         )
         click.echo(
             "ROC AUC mean: %.3f, with std: %.3f"
@@ -225,8 +228,6 @@ def train(
                 np.std(scores["test_roc_auc_ovr_weighted"]),
             )
         )
-
-        y_pred = best_model.predict(X)
 
         dump(best_model, save_model_path)
         click.echo(f"Model is saved to {save_model_path}.")
